@@ -1,3 +1,5 @@
+#!/usr/bin/env coffee
+
 competitors = [
 	"Walker Melton"
 	"Hayward Melton"
