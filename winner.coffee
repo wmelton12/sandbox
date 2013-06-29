@@ -1,6 +1,6 @@
 #!/usr/bin/env coffee
 
-print = (val) -> console.log val
+print = (val) -> console.log val + "\n"
 
 toActOn = [
 	"Walker"
@@ -17,6 +17,6 @@ funct = (act1...) ->
 	
 finalString = ""
 
-addToFinalString = (item) -> finalString = finalString + item
+addToFinalString = (item) -> finalString = finalString + " "  + item
 
 funct toActOn
