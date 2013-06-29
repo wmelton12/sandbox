@@ -2,7 +2,7 @@
 
 print = (val) -> console.log val
 
-list toActOn = [
+toActOn = [
 	"Walker"
 	"Hayward"
 	"Bruce"
