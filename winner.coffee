@@ -1,25 +1,22 @@
 #!/usr/bin/env coffee
 
-competitors = [
-	"Walker Melton"
-	"Hayward Melton"
-	"Bruce Melton"
+print = (val) -> console.log val
+
+list toActOn = [
+	"Walker"
+	"Hayward"
+	"Bruce"
+	"Juli"
 	"Buckminster"
-	"Third"
-	]
+]
+
+funct = (act1...) ->
+	print item for item in act1
+	addToFinalString item for item in act1
+	print finalString
 	
-gold = silver = bronze = rest = "unknown"
+finalString = ""
 
-assignWinners = (first, second, third, others...) ->
-	gold = first
-	silver = second
-	bronze = third
-	rest = others
-	
-assignWinners competitors...
+addToFinalString = (item) -> finalString = finalString + item
 
-console.log "Gold: " + gold
-console.log "Silver: " + silver
-console.log "Bronze: " + silver
-
-console.log competitor for competitor in rest
+funct toActOn
