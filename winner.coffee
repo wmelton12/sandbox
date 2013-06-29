@@ -5,6 +5,7 @@ competitors = [
 	"Hayward Melton"
 	"Bruce Melton"
 	"Buckminster"
+	"Third"
 	]
 	
 gold = silver = bronze = rest = "unknown"
