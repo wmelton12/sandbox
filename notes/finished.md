@@ -1,24 +1,24 @@
-*computer*
-**git**
+#computer
+##git
 
 	* push
 	* pull
 	* commit
-**install software on computers**
+##install software on computers
 
-**coffeescript**
+##coffee-script
 
 	* basic syntax
 	* loop comprehensions
 	* classes
 	* variables
-**working on:**
+##working on:
 
 	* coffeescript
 	* vim
 
-*other*
-**data**
+#other
+##data
 	
 	* read tasks
 
