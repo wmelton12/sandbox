@@ -23,3 +23,4 @@ Common O(n-squared) in place sorting algorithm.  It passes over the array multip
 
     test 'should pass', -> arrayEq list, sortedList
     test.status()
+
