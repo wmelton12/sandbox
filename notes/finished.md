@@ -1,3 +1,4 @@
+*computer*
 **git**
 
 	* push
@@ -15,4 +16,9 @@
 
 	* coffeescript
 	* vim
+
+*other*
+**data**
+	
+	* read tasks
 
