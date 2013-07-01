@@ -13,3 +13,9 @@ block quote:
 >As was once said
 >this is true
 >because I said so
+
+'''coffeescript
+
+function = (x) -> console.log x
+
+'''
