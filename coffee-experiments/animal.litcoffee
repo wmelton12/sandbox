@@ -16,23 +16,23 @@ the base class for the rest of the function.  Accepts a string title, a string a
 
 
     class Book
-    	constructor: (@title, @author, @pubDate, @numPages) ->
-    	displayInfo: ->
-    		nl 2
-    		@printTitle()
-    		@printAuthor()
-    		@printPubDate()
-    		@printNumPages()
-    	printTitle: ->
-    		print "Title: " + @title
-    	printAuthor: -> 
-    		print "Author: " + @author
-    	printPubDate: ->
-    		print "Publication Date: " + @pubDate
-    	printNumPages: ->
-    		print "Num Pages: " + @numPages
+        constructor: (@title, @author, @pubDate, @numPages) ->
+        displayInfo: ->
+            nl 2
+            @printTitle()
+            @printAuthor()
+            @printPubDate()
+            @printNumPages()
+        printTitle: ->
+            print "Title: " + @title
+        printAuthor: -> 
+            print "Author: " + @author
+        printPubDate: ->
+            print "Publication Date: " + @pubDate
+        printNumPages: ->
+            print "Num Pages: " + @numPages
 
-    		
+            
 ##Journal
 This class extends the book class, and represents a personal journal or diary.  Instead of a title, it uses the name's journal, and has numDates instead of numPages and startDate instead of pubDate.  Uses super's constructor, overrides several of the methods.
 *printAuthor
@@ -43,43 +43,43 @@ This class extends the book class, and represents a personal journal or diary.  
  *prints numDates instead    
  
     class Journal extends Book
-    	constructor: (@author, @startDate, @numDates) ->
-    		super(@author+"'s journal", @author, @startDate, @numDates)
-    	printAuthor: ->
-    	printPubDate: ->
-    		print "First Entry: " + @pubDate
-    	printNumPages: ->
-    		print "Num entries: " + @numPages
-    		
+        constructor: (@author, @startDate, @numDates) ->
+            super(@author+"'s journal", @author, @startDate, @numDates)
+        printAuthor: ->
+        printPubDate: ->
+            print "First Entry: " + @pubDate
+        printNumPages: ->
+            print "Num entries: " + @numPages
+            
 ##another class which extends book.
-Practice calling super.    	
+Practice calling super.        
 
     class Magazine extends Book
-    	constructor: (@magName, @society, @field, @numPages, @issue, @issueDate) ->
-    		super(@magName, @society, @issueDate, @numPages)
-    	displayInfo: ->
-    		super()
-    		@printIssueNum()
-    		@printField()
-    	printIssueNum: ->
-    		print "Issue number: " + @issue
-    	printField: ->
-    		print "Field: " + @field
-    	printPubDate: ->
-    		print "Issue Date: " + @issueDate
-    		
+        constructor: (@magName, @society, @field, @numPages, @issue, @issueDate) ->
+            super(@magName, @society, @issueDate, @numPages)
+        displayInfo: ->
+            super()
+            @printIssueNum()
+            @printField()
+        printIssueNum: ->
+            print "Issue number: " + @issue
+        printField: ->
+            print "Field: " + @field
+        printPubDate: ->
+            print "Issue Date: " + @issueDate
+            
 ##holds an array of books    
 
     class library
-    	constructor: ->
-    		@books = []
-    		@numBooks = 0
-    	addBook: (toAdd) ->
-    		@books[@numBooks] = toAdd
-    		@numBooks++
-    	getNumBooks: -> return @numBooks
-    	disp: ->
-    		book.displayInfo() for book in @books
+        constructor: ->
+            @books = []
+            @numBooks = 0
+        addBook: (toAdd) ->
+            @books[@numBooks] = toAdd
+            @numBooks++
+        getNumBooks: -> return @numBooks
+        disp: ->
+            book.displayInfo() for book in @books
 
 ##tests
 
