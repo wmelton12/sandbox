@@ -14,4 +14,5 @@ coffeescript
 working on:
 -----------
 	* coffeescript
+	* vim
 
