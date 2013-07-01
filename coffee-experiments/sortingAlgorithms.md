@@ -2,14 +2,16 @@
 # Bubble Sort
 Common O(n-squared) in place sorting algorithm.  It passes over the array multiple times.   if it finds a value that is less than the value before it, it switches the values.
 
-    bubbleSort = (unsortedList) ->
-        temp = null;
-        for i in [0 ... unsortedList.length]
-            for j in [1 ... unsortedList.length - i]
-                if(unsortedList[j] < unsortedList[j-1])
-                    temp = unsortedList[j]
-                    unsortedList[j] = unsortedList[j-1]
-                    unsortedList[j-1] = temp
+```coffeescript
+bubbleSort = (unsortedList) ->
+    temp = null;
+    for i in [0 ... unsortedList.length]
+        for j in [1 ... unsortedList.length - i]
+            if(unsortedList[j] < unsortedList[j-1])
+                temp = unsortedList[j]
+                unsortedList[j] = unsortedList[j-1]
+                unsortedList[j-1] = temp
+```
 ## tests
                 
     {ok, eq, arrayEq, log, test} = require 'testy'

@@ -10,6 +10,7 @@ Common O(n-squared) in place sorting algorithm.  It passes over the array multip
                     temp = unsortedList[j]
                     unsortedList[j] = unsortedList[j-1]
                     unsortedList[j-1] = temp
+
 ## tests
                 
     {ok, eq, arrayEq, log, test} = require 'testy'
