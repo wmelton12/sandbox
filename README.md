@@ -25,6 +25,7 @@ block quote:
 Format: ![Alt Text](url)
 
 some code
+
 	#!/usr/bin/env coffee
 	nl = (x) -> print "" for num in [1...x]
 	print = (x) -> console.log x
