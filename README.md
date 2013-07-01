@@ -5,3 +5,5 @@ second header
 -------------
 
 _this should be in italic_
+
+__this should be in bold__
