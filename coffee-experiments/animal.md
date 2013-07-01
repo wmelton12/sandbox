@@ -5,10 +5,11 @@ This allows it to be executed
 
 ```coffeescript
 #!/usr/bin/env coffee
-
-##Helper methods
+```
+## Helper methods
 I wrote these because I was tired of typing console.log or print ""
 
+```coffeescript
 print = (x) -> console.log x
 nl = (x) -> print "" for num in [1...x]
 ```
