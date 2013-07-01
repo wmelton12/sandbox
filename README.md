@@ -14,9 +14,9 @@ block quote:
 >this is true
 >because I said so
 
-'''javascript
-
-function print(x) {
-	$.facebox({div: '#foo'})
-}
-'''
+- [ ] a task list item
+- [ ] list syntax required
+- [ ] normal **formatting**,
+      @mentions, #1234 refs
+- [ ] incomplete
+- [x] completed
