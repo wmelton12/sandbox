@@ -14,22 +14,22 @@ I wrote these because I was tired of typing console.log or print ""
 the base class for the rest of the function.  Accepts a string title, a string author, a string pubDate, and an int numPages in its constructor.  displayInfo prints itself.  It calls methods to print each attribute so that each attribute could be overridden in a child class.
 
 '''coffeescript
-	class Book
-		constructor: (@title, @author, @pubDate, @numPages) ->
-		displayInfo: ->
-			nl 2
-			@printTitle()
-			@printAuthor()
-			@printPubDate()
-			@printNumPages()
-		printTitle: ->
-			print "Title: " + @title
-		printAuthor: -> 
-			print "Author: " + @author
-		printPubDate: ->
-			print "Publication Date: " + @pubDate
-		printNumPages: ->
-			print "Num Pages: " + @numPages
+class Book
+	constructor: (@title, @author, @pubDate, @numPages) ->
+	displayInfo: ->
+		nl 2
+		@printTitle()
+		@printAuthor()
+		@printPubDate()
+		@printNumPages()
+	printTitle: ->
+		print "Title: " + @title
+	printAuthor: -> 
+		print "Author: " + @author
+	printPubDate: ->
+		print "Publication Date: " + @pubDate
+	printNumPages: ->
+		print "Num Pages: " + @numPages
 '''
 			
 ##Journal
