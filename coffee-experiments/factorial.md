@@ -11,5 +11,3 @@ Make the code executable:
 
     factorial = (x, val = 1) -> if x == 1 then val else factorial x-1, val*x
 
-    console.log factorial 3
-
