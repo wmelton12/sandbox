@@ -14,8 +14,9 @@ block quote:
 >this is true
 >because I said so
 
-'''coffeescript
+'''javascript
 
-function = (x) -> console.log x
-
+function print(x) {
+	$.facebox({div: '#foo'})
+}
 '''
