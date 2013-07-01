@@ -10,7 +10,7 @@ Make the code executable:
   * don't need to multiply be 1, 1 is the multiplicative identity
 
     factorial = (x, val = 1) -> if x == 1 then val else factorial x-1, val*x
-    
+
 ## tests
 
     {ok, eq, arrayEq, log, test} = require 'testy'
