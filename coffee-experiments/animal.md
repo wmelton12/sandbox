@@ -34,11 +34,10 @@ class Book
         print "Publication Date: " + @pubDate
     printNumPages: ->
         print "Num Pages: " + @numPages
-
- 
-        
-## Journal
 ```
+
+Journal
+-------
 This class extends the book class, and represents a personal journal or diary.  Instead of a title, it uses the name's journal, and has numDates instead of numPages and startDate instead of pubDate.  Uses super's constructor, overrides several of the methods.
 
 *printAuthor
