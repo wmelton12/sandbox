@@ -25,7 +25,7 @@ block quote:
 Format: ![Alt Text](url)
 
 some code
-
+'''coffeescript
 	#!/usr/bin/env coffee
 	nl = (x) -> print "" for num in [1...x]
 	print = (x) -> console.log x
@@ -79,5 +79,5 @@ some code
 		getNumBooks: -> return @numBooks
 		disp: ->
 			book.displayInfo() for book in @books
-
+'''
 
