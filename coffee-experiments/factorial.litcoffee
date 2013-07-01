@@ -18,5 +18,4 @@ Make the code executable:
     test 'should pass', -> eq factorial(3), 6
     test 'should pass', -> eq factorial(4), 24
     test 'should pass', -> eq factorial(5), 120
-
     test.status()
