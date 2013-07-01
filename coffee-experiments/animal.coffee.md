@@ -13,7 +13,7 @@ I wrote these because I was tired of typing console.log or print ""
 ##Book
 the base class for the rest of the function.  Accepts a string title, a string author, a string pubDate, and an int numPages in its constructor.  displayInfo prints itself.  It calls methods to print each attribute so that each attribute could be overridden in a child class.
 
-'''coffeescript
+```coffeescript
 class Book
 	constructor: (@title, @author, @pubDate, @numPages) ->
 	displayInfo: ->
@@ -30,7 +30,7 @@ class Book
 		print "Publication Date: " + @pubDate
 	printNumPages: ->
 		print "Num Pages: " + @numPages
-'''
+```
 			
 ##Journal
 This class extends the book class, and represents a personal journal or diary.  Instead of a title, it uses the name's journal, and has numDates instead of numPages and startDate instead of pubDate.  Uses super's constructor, overrides several of the methods.
