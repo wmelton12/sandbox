@@ -21,7 +21,7 @@ block quote:
 - [ ] incomplete
 - [x] completed
 
-![GitHub Logo](/images/logo.png)
+![GitHub Logo](http://www.github.com/images/logo.png)
 Format: ![Alt Text](url)
 
 some code
