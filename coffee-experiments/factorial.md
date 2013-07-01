@@ -1,7 +1,8 @@
 Make the code executable:
-    
-    #!/usr/bin/env coffee
 
+```coffeescript
+#!/usr/bin/env coffee
+```
 ## factorial method
  * returns the factorial of x
  * recursive

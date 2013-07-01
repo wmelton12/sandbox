@@ -1,5 +1,5 @@
 Make the code executable:
-    
+
     #!/usr/bin/env coffee
 
 ## factorial method
