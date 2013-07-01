@@ -1,17 +1,17 @@
-**git
+**git**
 
 	* push
 	* pull
 	* commit
-**install software on computers
+**install software on computers**
 
-**coffeescript
+**coffeescript**
 
 	* basic syntax
 	* loop comprehensions
 	* classes
 	* variables
-**working on:
+**working on:**
 
 	* coffeescript
 	* vim
