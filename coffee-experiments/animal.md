@@ -11,10 +11,11 @@ I wrote these because I was tired of typing console.log or print ""
 
 print = (x) -> console.log x
 nl = (x) -> print "" for num in [1...x]
-
-##Book
-the base class for the rest of the function.  Accepts a string title, a string author, a string pubDate, and an int numPages in its constructor.  displayInfo prints itself.  It calls methods to print each attribute so that each attribute could be overridden in a child class.
 ```
+
+## Book
+the base class for the rest of the function.  Accepts a string title, a string author, a string pubDate, and an int numPages in its constructor.  displayInfo prints itself.  It calls methods to print each attribute so that each attribute could be overridden in a child class.
+
 
 
 ```coffeescript
