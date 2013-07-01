@@ -15,6 +15,7 @@ I wrote these because I was tired of typing console.log or print ""
 the base class for the rest of the function.  Accepts a string title, a string author, a string pubDate, and an int numPages in its constructor.  displayInfo prints itself.  It calls methods to print each attribute so that each attribute could be overridden in a child class.
 
 
+
     class Book
         constructor: (@title, @author, @pubDate, @numPages) ->
         displayInfo: ->
@@ -32,9 +33,12 @@ the base class for the rest of the function.  Accepts a string title, a string a
         printNumPages: ->
             print "Num Pages: " + @numPages
 
+     
             
 ##Journal
+
 This class extends the book class, and represents a personal journal or diary.  Instead of a title, it uses the name's journal, and has numDates instead of numPages and startDate instead of pubDate.  Uses super's constructor, overrides several of the methods.
+
 *printAuthor
  *useless, does nothing
 *printPubDate
@@ -50,9 +54,11 @@ This class extends the book class, and represents a personal journal or diary.  
             print "First Entry: " + @pubDate
         printNumPages: ->
             print "Num entries: " + @numPages
+       
             
 ##another class which extends book.
 Practice calling super.        
+
 
     class Magazine extends Book
         constructor: (@magName, @society, @field, @numPages, @issue, @issueDate) ->

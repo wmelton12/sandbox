@@ -16,27 +16,31 @@ nl = (x) -> print "" for num in [1...x]
 the base class for the rest of the function.  Accepts a string title, a string author, a string pubDate, and an int numPages in its constructor.  displayInfo prints itself.  It calls methods to print each attribute so that each attribute could be overridden in a child class.
 ```
 
-    class Book
-        constructor: (@title, @author, @pubDate, @numPages) ->
-        displayInfo: ->
-            nl 2
-            @printTitle()
-            @printAuthor()
-            @printPubDate()
-            @printNumPages()
-        printTitle: ->
-            print "Title: " + @title
-        printAuthor: -> 
-            print "Author: " + @author
-        printPubDate: ->
-            print "Publication Date: " + @pubDate
-        printNumPages: ->
-            print "Num Pages: " + @numPages
 
 ```coffeescript
-    
+class Book
+    constructor: (@title, @author, @pubDate, @numPages) ->
+    displayInfo: ->
+        nl 2
+        @printTitle()
+        @printAuthor()
+        @printPubDate()
+        @printNumPages()
+    printTitle: ->
+        print "Title: " + @title
+    printAuthor: -> 
+        print "Author: " + @author
+    printPubDate: ->
+        print "Publication Date: " + @pubDate
+    printNumPages: ->
+        print "Num Pages: " + @numPages
+
+ 
+        
 ##Journal
+```
 This class extends the book class, and represents a personal journal or diary.  Instead of a title, it uses the name's journal, and has numDates instead of numPages and startDate instead of pubDate.  Uses super's constructor, overrides several of the methods.
+
 *printAuthor
  *useless, does nothing
 *printPubDate
@@ -44,18 +48,21 @@ This class extends the book class, and represents a personal journal or diary.  
 *numPages
  *prints numDates instead    
  
-class Journal extends Book
-    constructor: (@author, @startDate, @numDates) ->
-        super(@author+"'s journal", @author, @startDate, @numDates)
-    printAuthor: ->
-    printPubDate: ->
-        print "First Entry: " + @pubDate
-    printNumPages: ->
-        print "Num entries: " + @numPages
-        
+    class Journal extends Book
+        constructor: (@author, @startDate, @numDates) ->
+            super(@author+"'s journal", @author, @startDate, @numDates)
+        printAuthor: ->
+        printPubDate: ->
+            print "First Entry: " + @pubDate
+        printNumPages: ->
+            print "Num entries: " + @numPages
+       
+            
 ##another class which extends book.
 Practice calling super.        
 
+
+```coffeescript
 class Magazine extends Book
     constructor: (@magName, @society, @field, @numPages, @issue, @issueDate) ->
         super(@magName, @society, @issueDate, @numPages)
