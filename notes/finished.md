@@ -1,17 +1,17 @@
 git
 ___
-	*push
-	*pull
-	*commit
+	* push
+	* pull
+	* commit
 install software on computers
 -----------------------------
 coffeescript
 ------------
-	*basic syntax
-	*loop comprehensions
-	*classes
-	*variables
+	* basic syntax
+	* loop comprehensions
+	* classes
+	* variables
 working on:
 -----------
-	*coffeescript
+	* coffeescript
 
