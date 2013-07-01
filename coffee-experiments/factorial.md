@@ -11,7 +11,7 @@ Make the code executable:
   * don't need to multiply be 1, 1 is the multiplicative identity
 
 ```coffeescript
-factorial = (x, val = 1) -> if x == 1 then val else factorial x-1, val*x
+factorial = (x, val = 1) -> if x <= 1 then val else factorial x-1, val*x
 ```
 ## tests
 
@@ -20,6 +20,5 @@ factorial = (x, val = 1) -> if x == 1 then val else factorial x-1, val*x
     test 'should pass', -> eq factorial(3), 6
     test 'should pass', -> eq factorial(4), 24
     test 'should pass', -> eq factorial(5), 120
-
     test.status()
 
