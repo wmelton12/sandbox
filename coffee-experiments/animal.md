@@ -1,4 +1,5 @@
 #Animal
+<img src = "http://www.precisionnutrition.com/wordpress/wp-content/uploads/2013/02/coffee-black.jpg" width = "100px" height = "100px" />
 I created this to try using classes and inheritance in coffeescript.  It is called animal.litcoffee because the example the guide used was animals, but I used books instead.
 This allows it to be executed
 
