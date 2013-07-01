@@ -20,3 +20,6 @@ block quote:
       @mentions, #1234 refs
 - [ ] incomplete
 - [x] completed
+
+![GitHub Logo](/images/logo.png)
+Format: ![Alt Text](url)
