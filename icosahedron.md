@@ -1,34 +1,46 @@
+# Icosahedron by Mike Bostock notation
+
+## create variables
+
+### create width and hight of the svg
 ```javascript
 var width = 960,
     height = 500;
 ```
+### define origin and velocity
 ```javascript
 var origin = [0, 0],
     velocity = [.18, .06];
 ```
+### create the projection.  2d (nonlinear) scale?
 ```javascript
 var projection = d3.geo.azimuthal()
     .mode("orthographic")
     .origin(origin)
     .scale(240);
 ```
+## Create views
+### Create svg
 ```javascript
 var svg = d3.select("body").append("svg")
     .attr("width", width)
     .attr("height", height);
 ```
+### create faces
 ```javascript
 var face = svg.selectAll(".face")
     .data(icosahedron_faces)
   .enter().append("path")
     .attr("class", "face");
 ```
+### create edget
 ```javascript
 var edge = svg.selectAll(".edge")
     .data(icosahedron_edges)
   .enter().append("path")
     .attr("class", "edge");
 ```
+### create points
 ```javascript
 var point = svg.selectAll(".point")
     .data(icosahedron_points)
@@ -36,6 +48,7 @@ var point = svg.selectAll(".point")
     .attr("class", "point")
     .attr("r", 3.5);
 ```
+## repeated loop
 ```javascript
 d3.timer(function() {
   origin[0] += velocity[0];
@@ -44,6 +57,8 @@ d3.timer(function() {
   draw();
 });
 ```
+## Data
+### Construct and reconstruct points
 ```javascript
 function icosahedron_points() {
   var points = [],
@@ -56,6 +71,8 @@ function icosahedron_points() {
   return points;
 }
 ```
+### construct and reconstruct edges
+
 ```javascript
 function icosahedron_edges() {
   var edges = [],
@@ -71,6 +88,7 @@ function icosahedron_edges() {
   return edges;
 }
 ```
+### construct and reconstruct faces
 ```javascript
 function icosahedron_faces() {
   var faces = [],
@@ -84,6 +102,7 @@ function icosahedron_faces() {
   return faces;
 }
 ```
+## draw new configuration
 ```javascript
 function draw() {
   point.attr("transform", function(d) { return "translate(" + projection(d) + ")"; });
