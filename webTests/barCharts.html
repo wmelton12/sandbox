@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<title>My D3</title>
+		<script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+		<style type="text/css">
+			/* No style rules here yet */
+			body{
+				width: 1000;
+			}		
+		</style>
+		
+	</head>
+	<body>
+		<script type="text/javascript">
+			
+			//Width and height
+			var w = 1000;
+			var h = 300;
+			var barSeparation = 1;
+			var dataset = [];
+			for(var i = 0; i<20; i++)
+			{
+				dataset.push(Math.floor(Math.random()*20));
+				//dataset.push(i%20);
+			}
+			
+			var scale = d3.scale.linear()
+						  .domain([0, d3.max(dataset)])
+						  .range([0, h]);
+			var svg = d3.select("body")
+						.append("svg")
+						//.attr("width", w)
+						.attr("height", h + 100);
+			svg.selectAll("rect")
+			   .data(dataset)
+			   .enter()
+			   .append("rect")
+			   .attr("x", function(d, i) {
+			   		return i * (w / dataset.length);
+			   })
+			   .attr("y", function(d){ return h-scale(d) + 15; })
+			   .attr("width", (w / dataset.length) - barSeparation)
+			   .attr("height", function(d){ return scale(d); })
+			   .attr("fill",function(d) {
+			   		return "rgb(0," + d*15 + "," + d*10 + ")";
+			   });
+			svg.selectAll("text")
+			   .data(dataset)
+			   .enter()
+			   .append("text")
+			   .text(function(d) {
+			   		return d;
+			   		})
+			   	.attr("x", function(d, i) {
+        			return i * (w / dataset.length) + (w / dataset.length - barSeparation) / 2;
+    			})
+   				.attr("y", function(d) {
+   					return (h) - (scale(d)) + 7;
+   				})
+   				.attr("font-family","sans-serif")
+   				.attr("fill", "black")
+   				.attr("font-size", function(d) {
+   					return 10;
+   				})
+   				.attr("text-anchor","middle");
+   				
+
+			
+			   		 
+		</script>
+	</body>
+</html>

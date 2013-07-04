@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<title>My D3</title>
+		<script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+		<style type="text/css">
+			/* No style rules here yet */
+			body{
+				width: 1000;
+			}		
+		</style>
+		
+	</head>
+	<body>
+		<script type="text/javascript">
+			
+			//Width and height
+			var w = 1000;
+			var h = 100;
+			var barSeparation = 1;
+			var dataset = [12, 14, 15, 17, 16, 14, 15, 18, 2, 5, 10, 15, 14, 13, 12, 11,
+			 		       10, 11, 12, 13, 12, 11, 10, 9, 9, 9, 8, 10, 11, 12, 14, 15, 17, 
+			 		       19];
+			var scale = d3.scale.linear()
+						  .domain([0, d3.max(dataset)])
+						  .range([0, h]);
+			var svg = d3.select("body")
+						.append("svg")
+						//.attr("width", w)
+						.attr("height", h);
+			svg.selectAll("rect")
+			   .data(dataset)
+			   .enter()
+			   .append("rect")
+			   .attr("x", function(d, i) {
+			   		return i * (w / dataset.length);
+			   })
+			   .attr("y", function(d){ return h-scale(d); })
+			   .attr("width", (w / dataset.length) - barSeparation)
+			   .attr("height", function(d){ return scale(d); })
+			   .attr("fill",function(d){
+			   		return "rgb(0, 0, " + (d * 15) + ")";
+			   });
+			
+
+			var svg2 = d3.select("body")
+					     .append("svg")
+					     .attr("width", w)
+						 .attr("height", h);
+			svg2.selectAll("circle")
+			    .data(dataset)
+				.enter()
+		    	.append("circle")
+		    	.attr("cx",
+		    		function(d, i){
+		    			return d*10;
+		    		}
+		   		)
+		   		.attr("cy", 
+		   			function(d){
+		   				return h/2;
+		   			}
+		   		)
+		   		.attr("r",
+		   			function(d){
+		   				return 15;
+		   			}
+		   		 )
+		   		 .attr("fill",
+		   		 	function(d){
+		   		 		return "rgba(0,100,0,0.2)";
+		   		 	}
+		   		 );
+			   		 
+		</script>
+	</body>
+</html>

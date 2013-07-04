@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+<script src="http://joyrexus.spc.uchicago.edu/resources/coffee-script.js"></script>
+<style>
+</style>
+<body>
+	<script type="text/coffeescript">
+  w = 500;
+  h = 100;
+  barSeparation = 1
+  dataset = [12, 14, 15, 17, 16, 14, 15, 18, 2, 5, 10, 15, 14, 13, 12, 11,10, 11, 12, 13, 12, 11, 10, 9, 9, 9, 8, 10, 11, 12, 14, 15, 17, 19] 	 
+		 
+		 		   
+  svg = d3.select('body')
+		  .append('svg')
+		  .attr('height', h)
+		  .attr('width', w)
+		 		 	
+  svg.selectAll('rect')
+   	 .data(dataset)
+     .enter()
+     .append('rect')
+     .attr('x',(d, i) ->i * (w / dataset.length))
+     .attr('y', (d) -> h-d*4)
+     .attr('width', (w / dataset.length) - barSeparation)
+     .attr('height', (d) -> d*4)
+     .attr('fill', (d) -> "rgb(0, 0,"+d*15+")")
+		    	
+	</script>
+</body>
+</html>
