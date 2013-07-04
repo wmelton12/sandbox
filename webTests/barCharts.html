@@ -13,6 +13,7 @@
 		
 	</head>
 	<body>
+		<p id="clickToUpdate">Click this to update!</p>
 		<script type="text/javascript">
 			
 			//Width and height
@@ -57,15 +58,65 @@
         			return i * (w / dataset.length) + (w / dataset.length - barSeparation) / 2;
     			})
    				.attr("y", function(d) {
-   					return (h) - (scale(d)) + 7;
+   					return (h) - (scale(d)) + 25;
    				})
    				.attr("font-family","sans-serif")
-   				.attr("fill", "black")
+   				.attr("fill", "white")
    				.attr("font-size", function(d) {
    					return 10;
    				})
    				.attr("text-anchor","middle");
-   				
+   			d3.select("p")
+   			  .on("click", function() {
+   			  		dataset = [];
+   			  		for(var i = 0; i<20; i++)
+					{
+						var newNumber = Math.floor(Math.random() * 20); //New random integer (0-25)
+						dataset.push(newNumber);
+					}
+					
+					svg.selectAll("rect")
+			  			.data(dataset)
+			  			.transition()
+			  			.duration(1000)
+			  			.delay(function(d, i) {
+    						return i / dataset.length * 1000;   // <-- Where the magic happens
+						})
+						
+			   			.attr("x", function(d, i) {
+			   				return i * (w / dataset.length);
+			   			})
+			   			.attr("y", function(d){ return h-scale(d) + 15; })
+			   			.attr("width", (w / dataset.length) - barSeparation)
+			   			.attr("height", function(d){ return scale(d); })
+			   			.attr("fill",function(d) {
+			   				return "rgb(0," + d*15 + "," + d*10 + ")";
+			   			});
+			   		
+					svg.selectAll("text")
+			   		   .data(dataset)
+			   		   .transition()
+			   		   .duration(1000)
+			   		   .delay(function(d, i) {
+    						return i / dataset.length * 1000;   // <-- Where the magic happens
+						})
+			   		   .text(function(d) {
+			   				return d;
+			   			})
+			   		   .attr("x", function(d, i) {
+        					return i * (w / dataset.length) + (w / dataset.length - barSeparation) / 2;
+    					})
+   						.attr("y", function(d) {
+   							return (h) - (scale(d)) + 25;
+   						})
+   						.attr("font-family","sans-serif")
+   						.attr("fill", "white")
+   						.attr("font-size", function(d) {
+   							return 10;
+   						})
+   						.attr("text-anchor","middle");
+   			        
+   			  });
 
 			
 			   		 
