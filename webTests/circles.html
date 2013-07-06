@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset= "utf8" />
+		<script src = "d3.v3.min.js"></script>
+		<style>
+			circle {
+        		-moz-transition: all 0.3s;
+        		-o-transition: all 0.3s;
+        		-webkit-transition: all 0.3s;
+       			 transition: all 0.3s;
+			}
+			circle:hover {
+				fill : orange;
+			}		
+		</style>
+	</head>
+	<body>
+		<script>
+			var w = 500;
+			var h = 500;
+			var rMult = 0;
+			var gMult = 12;
+			var bMult = 0;
+			var dataset = [];
+			
+			var generateNewData = function() {
+				dataset = [];
+				for(var i = 20; i<480; i+=40)
+				{
+					for(var j = 20; j<480; j+=40)
+					{
+						dataset.push([i, j, Math.floor(Math.random()*20)]); 
+					}
+				}
+			}
+			var generateNewDataKeepingOneValueTheSame = function(i) {
+				val old = dataset[i];
+				dataset = [];
+				for(var i = 20; i<480; i+=40)
+				{
+					for(var j = 20; j<480; j+=40)
+					{
+						dataset.push([i, j, Math.floor(Math.random()*20)]); 
+					}
+				}
+				dataset[i] = old;
+			}
+			generateNewData();
+			
+			var svg = d3.select("body")
+						.append("svg")
+						.attr("width",w)
+						.attr("height",h)
+						.on("click", function() {
+							generateNewData()
+							
+							svg.selectAll("circle")
+			       			   .data(dataset)
+			        		   .transition()
+			       			   .delay(function(d, i) {
+			       					   return ((d[0]+d[1])/(dataset.length)) * 500;
+			       			   })
+			       			   .attr("fill", function(d) {
+			   		    			   return "rgba("+d[2]*rMult+"," + d[2]*gMult + "," + d[2]*bMult + ",0.5)";
+			       			   })
+			       			   .attr("cx", function(d) { return d[0]; })
+			       			   .attr("cy", function(d) { return d[1]; })
+			       			   .attr("r", function(d) {
+			   		    			   return d[2];
+			       			   });
+						
+						});
+						
+			svg.selectAll("circle")
+			   .data(dataset)
+			   .enter()
+			   .append("circle")
+			   .attr("cx", function(d) { return d[0]; })
+			   .attr("cy", function(d) { return d[1]; })
+			   .attr("r", function(d) {
+			   		return d[2];
+			   })
+			   .attr("fill", function(d) {
+			   		return "rgba("+d[2]*rMult+"," + d[2]*gMult + "," + d[2]*bMult + ",0.5)";
+			   });
+			
+		
+		</script>
+	</body>
+</html>

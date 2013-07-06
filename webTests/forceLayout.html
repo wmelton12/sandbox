@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset = "utf8" />
+		<script src = "d3.v3.min.js"></script>
+		
+		<title>
+			Force Layout
+		</title>
+		
+		<style>
+		</style>
+	</head>
+	<body>
+		<script>
+			var sides = prompt("Please enter a number of sides", "4");
+			sides = parseInt(sides);
+			var h = 1000;
+			var w = 1000;
+			var dataset = {
+        			nodes: [
+               			 
+        			],
+        			edges: [
+                		
+        			]
+			};
+			for(var e = 0; e<sides; e++)
+			{
+				dataset.nodes.push({x: i*10, y: j*10});
+			}
+			for(var i = 0; i<dataset.nodes.length; i++)
+			{
+				for(var j = 0; j<i; j++)
+				{
+					dataset.edges.push({ source: i, target: j, strength: i*j});
+				}
+			}
+			var svg = d3.select("body")
+						.append("svg")
+						.attr("width", w)
+						.attr("height", h);
+			var force = d3.layout.force()
+						  .nodes(dataset.nodes)
+						  .links(dataset.edges)
+						  .size([w, h])
+						  .linkDistance([50])
+						  .charge([-9000])
+						  .start();
+			
+			var nodes = svg.selectAll("circle")
+						   .data(dataset.nodes)
+						   .enter()
+						   .append("circle")
+						   .attr("r", 20)
+						   .attr("stroke-width", 35)
+						   .attr("stroke", "white")
+						   .style("fill", function(d, i) {
+						   		return "rgba(" + 200 + "," + i + ","+ i + ", 0.5)";
+						   })
+						   .call(force.drag);
+			var edges = svg.selectAll("line")
+						   .data(dataset.edges)
+						   .enter()
+						   .append("line")
+						   .attr("opacity", 0.5)
+						   .style("stroke","#333")
+						   .style("stroke-width",function(d){ return d.source; });
+			force.on("tick", function() {
+				edges.attr("x1", function(d) { return d.source.x; })
+				     .attr("y1", function(d) { return d.source.y; })
+				     .attr("x2", function(d) { return d.target.x; })
+				     .attr("y2", function(d) { return d.target.y; });
+				     
+			    nodes.attr("cx", function(d) { return d.x; })
+			    	 .attr("cy", function(d) { return d.y; });
+			});
+		</script>
+		
+	</body>
+</html>

@@ -3,25 +3,68 @@
 	<head>
 		<meta charset="utf-8">
 		<title>My D3</title>
-		<script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+		<script src="d3.v3.min.js" charset="utf-8"></script>
 		<style>
 			/* No style rules here yet */
 			body{
 				width: 1000;
-			}		
+				background-color: #eeeeee;
+			}
+			rect, text {
+        		-moz-transition: all 0.3s;
+        		-o-transition: all 0.3s;
+        		-webkit-transition: all 0.3s;
+       			 transition: all 0.3s;
+			}
+			rect:hover {
+				fill : #779977;
+				
+			}
+			#tooltip {
+    		    position: absolute;
+        		width: 200px;
+        		height: auto;
+        		padding: 10px;
+    		    background-color: white;
+        		-webkit-border-radius: 10px;
+       			 -moz-border-radius: 10px;
+        		border-radius: 10px;
+        		-webkit-box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.4);
+        		-moz-box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.4);
+        		box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.4);
+        		pointer-events: none;
+			}
+
+			#tooltip.hidden {
+      			  display: none;
+			}
+
+			#tooltip p {
+       			 margin: 0;
+       			 font-family: sans-serif;
+       			 font-size: 16px;
+        		line-height: 20px;
+			}
+			
 		</style>
 		
 	</head>
 	<body>
-		<p id="clickToUpdate">Click this to update!</p>
+		<div id="tooltip" class="hidden">
+        	<p><strong>Important Label Heading</strong></p>
+       	    <p><span id="value">100</span>%</p>
+		</div>
 		<script type="text/javascript">
 			
 			//Width and height
 			var w = 1000;
 			var h = 300;
+			var rMult = 0;
+			var gMult = 0;
+			var bMult = 15;
 			var barSeparation = 1;
 			var dataset = [];
-			for(var i = 0; i<20; i++)
+			for(var i = 0; i<30; i++)
 			{
 				dataset.push(Math.floor(Math.random()*20));
 				//dataset.push(i%20);
@@ -45,8 +88,82 @@
 			   .attr("width", (w / dataset.length) - barSeparation)
 			   .attr("height", function(d){ return scale(d); })
 			   .attr("fill",function(d) {
-			   		return "rgb(0," + d*15 + "," + d*10 + ")";
-			   });
+			   		return "rgb("+d*rMult+"," + d*gMult + "," + d*bMult + ")";
+			   })
+			   .on("mouseover", function(d,i) {
+					//console.log("Hello");
+					//Get this bar's x/y values, then augment for the tooltip
+					var xPosition = parseFloat(d3.select(this).attr("x")) + (w / dataset.length - barSeparation) / 2;
+					var yPosition = parseFloat(d3.select(this).attr("y")) / 2 + h / 2;
+					//Update the tooltip position and value
+					d3.select("#tooltip")
+  						.style("left", xPosition + "px")
+  						.style("top", yPosition + "px")
+  						.select("#value")
+  						.text(d);
+
+					//Show the tooltip
+					d3.select("#tooltip").classed("hidden", false);
+
+				})
+				.on("mouseout", function() {
+					//console.log("Goodby");
+					//Hide the tooltip
+					d3.select("#tooltip").classed("hidden", true);
+
+				})
+			   .on("click", function(d,ind) {
+			   					var old = dataset[ind];
+			   					
+   			  					dataset = [];
+   			  					for(var i = 0; i<30; i++)
+								{
+									var newNumber = Math.floor(Math.random() * 20); //New random integer (0-25)
+									dataset[i] = newNumber;
+								}
+								dataset[ind] = old;
+								
+								svg.selectAll("rect")
+			  						.data(dataset)
+			  						.transition()
+			  						.duration(1000)
+			  						.delay(function(d, i) {
+    									return i / dataset.length * 5000;   // <-- Where the magic happens
+									})
+			   						.attr("x", function(d, i) {
+			   								return i * (w / dataset.length);
+			   						})
+			   						.attr("y", function(d){ return h-scale(d) + 15; })
+			   						.attr("width", (w / dataset.length) - barSeparation)
+			   						.attr("height", function(d){ return scale(d); })
+			   						.attr("fill",function(d) {
+			   							return "rgb("+d*rMult+"," + d*gMult + "," + d*bMult + ")";
+			   						});	
+			   		
+							svg.selectAll("text")
+			   		   			.data(dataset)
+			   		   			.transition()
+			   		   			.duration(1000)
+			   		   			.delay(function(d, i) {
+    								return i / dataset.length * 5000;   // <-- Where the magic happens
+								})
+			   		   			.text(function(d) {
+			   						return d;
+			   					})
+			   		   			.attr("x", function(d, i) {
+        							return i * (w / dataset.length) + (w / dataset.length - barSeparation) / 2;
+    							})
+   								.attr("y", function(d) {
+   									return (h) - (scale(d)) + 25;
+   								})
+   								.attr("font-family","sans-serif")
+   								.attr("fill", "#eeeeee")
+   								.attr("font-size", function(d) {
+   									return 10;
+   								})
+   								.attr("text-anchor","middle");
+   							
+   			  });
 			svg.selectAll("text")
 			   .data(dataset)
 			   .enter()
@@ -61,62 +178,13 @@
    					return (h) - (scale(d)) + 25;
    				})
    				.attr("font-family","sans-serif")
-   				.attr("fill", "white")
+   				.attr("fill", "#eeeeee")
    				.attr("font-size", function(d) {
    					return 10;
    				})
    				.attr("text-anchor","middle");
    			d3.select("p")
-   			  .on("click", function() {
-   			  		dataset = [];
-   			  		for(var i = 0; i<20; i++)
-					{
-						var newNumber = Math.floor(Math.random() * 20); //New random integer (0-25)
-						dataset.push(newNumber);
-					}
-					
-					svg.selectAll("rect")
-			  			.data(dataset)
-			  			.transition()
-			  			.duration(1000)
-			  			.delay(function(d, i) {
-    						return i / dataset.length * 1000;   // <-- Where the magic happens
-						})
-						
-			   			.attr("x", function(d, i) {
-			   				return i * (w / dataset.length);
-			   			})
-			   			.attr("y", function(d){ return h-scale(d) + 15; })
-			   			.attr("width", (w / dataset.length) - barSeparation)
-			   			.attr("height", function(d){ return scale(d); })
-			   			.attr("fill",function(d) {
-			   				return "rgb(0," + d*15 + "," + d*10 + ")";
-			   			});
-			   		
-					svg.selectAll("text")
-			   		   .data(dataset)
-			   		   .transition()
-			   		   .duration(1000)
-			   		   .delay(function(d, i) {
-    						return i / dataset.length * 1000;   // <-- Where the magic happens
-						})
-			   		   .text(function(d) {
-			   				return d;
-			   			})
-			   		   .attr("x", function(d, i) {
-        					return i * (w / dataset.length) + (w / dataset.length - barSeparation) / 2;
-    					})
-   						.attr("y", function(d) {
-   							return (h) - (scale(d)) + 25;
-   						})
-   						.attr("font-family","sans-serif")
-   						.attr("fill", "white")
-   						.attr("font-size", function(d) {
-   							return 10;
-   						})
-   						.attr("text-anchor","middle");
-   			        
-   			  });
+   			  
 
 			
 			   		 
