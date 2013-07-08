@@ -9,14 +9,21 @@
 		</title>
 		
 		<style>
+		body{
+			background-color: white;
+		}
 		</style>
 	</head>
 	<body>
 		<script>
+			var r = parseInt(prompt("Please enter a width", "5"));
 			var sides = prompt("Please enter a number of sides", "4");
+			var numConnections = parseInt(prompt("Num connections","20"));
+			var charge = parseInt(prompt("Enter a charge","-100"));
 			sides = parseInt(sides);
-			var h = 1000;
+			var h = 600;
 			var w = 1000;
+			var color = d3.scale.category10();
 			var dataset = {
         			nodes: [
                			 
@@ -27,15 +34,14 @@
 			};
 			for(var e = 0; e<sides; e++)
 			{
-				dataset.nodes.push({x: i*10, y: j*10});
+				dataset.nodes.push({});
 			}
-			for(var i = 0; i<dataset.nodes.length; i++)
+			for(var i = 0; i<numConnections && sides!=0; i++)
 			{
-				for(var j = 0; j<i; j++)
-				{
-					dataset.edges.push({ source: i, target: j, strength: i*j});
-				}
+				dataset.edges.push({ source: Math.floor(Math.random()*sides), target: Math.floor(Math.random()*sides), strength: i});
 			}
+			//var finalTarget = dataset.nodes.length - 1;
+			//dataset.edges.push({ source: finalTarget, target: 0, strength: 10});
 			var svg = d3.select("body")
 						.append("svg")
 						.attr("width", w)
@@ -44,36 +50,40 @@
 						  .nodes(dataset.nodes)
 						  .links(dataset.edges)
 						  .size([w, h])
-						  .linkDistance([50])
-						  .charge([-9000])
+						  .linkDistance([20])
+						  .charge([charge])
 						  .start();
 			
-			var nodes = svg.selectAll("circle")
-						   .data(dataset.nodes)
-						   .enter()
-						   .append("circle")
-						   .attr("r", 20)
-						   .attr("stroke-width", 35)
-						   .attr("stroke", "white")
-						   .style("fill", function(d, i) {
-						   		return "rgba(" + 200 + "," + i + ","+ i + ", 0.5)";
-						   })
-						   .call(force.drag);
+
 			var edges = svg.selectAll("line")
 						   .data(dataset.edges)
 						   .enter()
 						   .append("line")
-						   .attr("opacity", 0.5)
-						   .style("stroke","#333")
-						   .style("stroke-width",function(d){ return d.source; });
+						   .attr("opacity", 1)
+						   .style("stroke","#77aa77")
+						   .style("stroke-width",function(d){ return 2*r; });
+			var nodes = svg.selectAll("circle")
+						   .data(dataset.nodes)
+						   .enter()
+						   .append("circle")
+						   .attr("r", r)
+						   .style("fill", function(d, i) {
+						   		if(sides<10){ return color(i); }
+						   		else{ return "black"; }
+						   })
+						   .call(force.drag);
 			force.on("tick", function() {
+				r = r + 0;
 				edges.attr("x1", function(d) { return d.source.x; })
 				     .attr("y1", function(d) { return d.source.y; })
 				     .attr("x2", function(d) { return d.target.x; })
-				     .attr("y2", function(d) { return d.target.y; });
+				     .attr("y2", function(d) { return d.target.y; })
+				     .style("stroke-width", r/2);
+				     
 				     
 			    nodes.attr("cx", function(d) { return d.x; })
-			    	 .attr("cy", function(d) { return d.y; });
+			    	 .attr("cy", function(d) { return d.y; })
+			    	 .attr("r", r);
 			});
 		</script>
 		
