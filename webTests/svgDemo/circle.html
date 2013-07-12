@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<script src="svg.js"></script>
+<link rel="stylesheet" type="text/css" href="styles.css" />
+<body>
+<div id="e1">
+	<div class = "exp">
+	Contructor:
+		circle(radius)
+	</div>
+	<div id="c1" class = "c"></div>
+</div>
+<div id="e2">
+	<div class = "exp">
+	After .move(100,100); Note: not relative 
+	</div>
+	<div id="c2" class="c"></div>
+</div>
+<div id="e3">
+	<div class = "exp">
+		after off-center rotate:
+			circle.transform({
+				rotation: 45,
+				cx: 30,
+				cy: 30
+			});
+	</div>
+	<div id="c3" class="c"></div>
+</div>
+<div id="e4">
+	<div class = "exp">
+		after skew:
+			circ.transform({
+				skewX: 10;
+			});
+	</div>
+	<div id="c4" class="c"></div>
+</div>
+<div id="e5">
+	<div class="exp">
+		after scale:
+			circ.transform({
+				scaleX: 10
+			});
+	</div>
+	<div id="c5" class = "c"></div>
+</div>
+<script>
+  var rectStyle = { 
+    fill: "none",
+    stroke: "#999",
+    'stroke-width': 2
+  };
+  var circStyle = {
+  	stroke: 'aliceblue',
+  	'stroke-width': 6,
+  	fill: 'steelblue'
+  };
+ 
+  var draw1 = function(divToPutIn) {
+  	var draw = SVG(divToPutIn).size(350, 350);
+  	var rect = draw.rect(350, 350);
+  	rect.attr(rectStyle);
+  	var circ = draw.circle(50)
+  				   .x(40).y(40)
+  				   .attr(circStyle);
+  };
+  var draw2 = function(divToPutIn) {
+  	var draw = SVG(divToPutIn).size(350, 350);
+  	var rect = draw.rect(350, 350);
+  	rect.attr(rectStyle);
+  	var circ = draw.circle(50)
+  				   .x(40).y(40)
+  				   .move(100, 100)
+  				   .attr(circStyle);
+  };
+  var draw3 = function(divToPutIn) {
+  	var draw = SVG(divToPutIn).size(350, 350);
+  	var rect = draw.rect(350,350).attr(rectStyle);
+  	var circ = draw.circle(50)
+  				   .x(40).y(40)
+  				   .attr(circStyle);
+  	circ.transform({
+			rotation: 45,
+			cx: 30,
+			cy: 30
+		});
+  }
+  var draw4 = function(divToPutIn) {
+  	var draw = SVG(divToPutIn).size(350, 350);
+  	var rect = draw.rect(350,350).attr(rectStyle);
+  	var circ = draw.circle(50)
+  				   .x(40).y(40)
+  				   .attr(circStyle);
+  	circ.transform({
+			skewX: 10
+		});
+  }
+  var draw5 = function(divToPutIn) {
+  	var draw = SVG(divToPutIn).size(350, 350);
+  	var rect = draw.rect(350,350).attr(rectStyle);
+  	var circ = draw.circle(50)
+  				   .x(40).y(40)
+  				   .attr(circStyle);
+  	circ.transform({
+  		scaleX: 2
+  	});
+  }
+  draw1('c1');
+  draw2('c2');
+  draw3('c3');
+  draw4('c4');
+  draw5('c5');
+</script>
