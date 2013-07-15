@@ -1,0 +1,45 @@
+body{
+	width: 350;
+	background-color: #eeeeee;
+}
+.c {
+	width: 350;
+	height: 300;
+	}
+.exp {
+	color: green;
+	width: 350;
+}
+#e1, #e2, #e3, #e4, #e5, #e6 {
+	
+}
+#e1 {
+	position:absolute;
+	left:20px;
+	top:20px;
+}
+#e2{
+	position:absolute;
+	left:390px;
+	top:20px;
+	}
+#e3{
+	position:absolute;
+	left:760px;
+	top:20px;
+}
+#e4{
+	position:absolute;
+	left:20px;
+	top:390px;
+}
+#e5{
+	position:absolute;
+	left:390px;
+	top:390px;
+}
+#e6{
+	position:absolute;
+	left:760px;
+	top:390px;
+}

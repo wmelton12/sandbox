@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<script src = "../d3.v3.min.js"></script>
+		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"></script>
+		<script src="http://joyrexus.spc.uchicago.edu/resources/coffee-script.js"></script>
+		<script src="input.coffee" type = "text/coffeescript"></script>
+	</head>
+	<body>
+	
+	<script type="text/coffeescript">
+input = new Inputer('body')
+
+gravField = input.createTextField("grav","gravy")
+windField = input.createTextField("wind","windx")
+button = d3.select('button')
+text = d3.select('body').append('text').text('val')
+button = input.getNewButton()
+button.attr('value', 'GetText').attr('id', 'button')
+$('#button').click( ()->
+	str = "Gravity y: " + input.getTextField(gravField) + "\n Wind x: " + input.getTextField(windField)
+	text.text(str)
+)
+</script>
+	
+	</body>
+</html>

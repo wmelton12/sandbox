@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset = "utf-8" />
+		<title>Spaceship</title>
+		<script src="svg.js"></script>
+		<style>
+		body{
+			background-color: gray;
+			
+		}
+		</style>
+	</head>
+	<body>
+		<div id="Title"></div>
+		<script>
+			var b = false;
+			var draw = SVG('Title');
+			
+			var image = draw.image('spaceship.jpg');
+			image.size(1200, 600).y(-150);
+			var text = draw.text('Falling\nSPACESHIP');
+			text.move(500, 150).fill('#fff');
+			text.font({
+				family: 'Source Sans Pro',
+				size: 80,
+				anchor: 'middle',
+				leading: 1
+			});
+			//image.maskWith(text);
+			text.click(function() {
+				if(b == false){
+					this.fill({ color: '#F06' });
+					b = true;
+				}else{
+					this.fill('#fff');
+					b = false;
+				}
+			});
+			//text.skew(0,45);
+			
+			
+		</script>
+	</body>
+</html>

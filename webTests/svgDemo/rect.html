@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset = "utf-8" />
+		<title>rect</title>
+		<script src = "svg.js"></script>
+		<link rel="stylesheet" type="text/css" href="styles.css" />
+	</head>
+	<body>
+<div id="e1">
+	<div class = "exp">
+		constructor:
+			rect(width, height);
+	<div id = "c1" class = "c"></div>
+</div>
+<div id="e2">
+	<div class = "exp">
+		after move(100,100);
+	</div>
+	<div id="c2" class = "c"></div>
+</div>
+<div id="e3">
+	<div class = "exp">
+		after .transform({
+								rotation: 45,
+								cx:60,
+								cy:35
+							});
+		
+			
+	</div>
+	<div id="c3" class = "c"></div>
+</div>
+<div id="e4">
+	<div class ="exp">
+		after skew:
+			.transform({
+				skewX: 10;
+			});
+	</div>
+	<div id="c4" class = "c"></div>
+</div>
+<div id="e5">
+	<div class ="exp">
+	after
+		.transform({
+			scaleX: 3
+			});
+	</div>
+	<div id="c5" class = "c"></div>
+</div>
+	<script>
+		var boxStyle = {
+			fill: "none",
+    		stroke: "#dddddd",
+    		'stroke-width': 4
+		};
+		var rectStyle = {
+			fill: 'aliceblue',
+			stroke: 'steelblue',
+			'stroke-width' : 6
+		};
+		var draw1 = function(divToPutIn) {
+			var draw = SVG(divToPutIn).size(350,350);
+			var box = draw.rect(350,350).attr(boxStyle);
+			var rect = draw.rect(100, 50).x(10).y(10).attr(rectStyle);
+		}
+		var draw2 = function(divToPutIn) {
+			var draw = SVG(divToPutIn).size(350,350);
+			var box = draw.rect(350,350).attr(boxStyle);
+			var rect = draw.rect(100, 50).x(10).y(10).attr(rectStyle)
+						   .move(100,100);
+		}
+		var draw3 = function(divToPutIn) {
+			var draw = SVG(divToPutIn).size(350,350);
+			var box = draw.rect(350,350).attr(boxStyle);
+			var rect = draw.rect(100, 50).x(10).y(10).attr(rectStyle)
+							.transform({
+								rotation: 45,
+								cx:60,
+								cy:35
+							});
+		}
+		var draw4 = function(divToPutIn) {
+			var draw = SVG(divToPutIn).size(350,350);
+			var box = draw.rect(350,350).attr(boxStyle);
+			var rect = draw.rect(100, 50).x(10).y(10).attr(rectStyle)
+							.transform({
+								skewX: 10
+							});
+		}
+		var draw5 = function(divToPutIn) {
+			var draw = SVG(divToPutIn).size(350,350);
+			var box = draw.rect(350,350).attr(boxStyle);
+			var rect = draw.rect(100, 50).x(10).y(10).attr(rectStyle)
+							.transform({
+								scaleX: 3
+							});
+		}
+		draw1('c1');
+		draw2('c2');
+		draw3('c3');
+		draw4('c4');
+		draw5('c5');
+	</script>
+	</body>
+</html>

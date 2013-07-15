@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset = "utf-8"/>
+		<title>line</title>
+		<script src="svg.js"></script>
+		<link rel="stylesheet" type="text/css" href="styles.css" />
+			</head>
+	<body>
+<div id="e1">
+	<div class="exp">
+		Constructor: line(10,10,100,100) //x1,y1,x2,y2
+	</div>
+	<div id="c1"></div>
+</div>
+<div id="e2">
+	<div class="exp">
+		after move(30,30);
+	</div>
+	<div id="c2"></div>
+</div>
+<div id = "e3">
+	<div class="exp">
+		after
+			.transform({
+				rotation: -45,
+				cx:60,
+				cy:60
+			});
+	</div>
+	<div id="c3" class="c"></div>
+</div>
+<div id="e4">
+	<div class="exp">
+	after transform({
+				skewX:10
+			});
+	</div>
+	<div id="c4" class="c"></div>
+</div>
+<div id="e5">
+	<div class="exp">
+	after transform({
+				scaleX:4
+			});
+	</div>
+	<div id="c5" class="c"></div>
+</div>
+	<script>
+		var boxStyle = {
+			fill: "none",
+    		stroke: "#dddddd",
+    		'stroke-width': 4
+		};
+		var lineStyle = {
+			'stroke-width':3
+		};
+		var drawBox = function(draw) {
+			var box = draw.rect(350,350).attr(boxStyle);
+			return box;
+		}
+		var drawLine = function(draw) {
+			var line = draw.line(10, 10, 100, 100).attr(lineStyle);
+			return line;
+		}
+		var setUp = function(whereToPut) {
+			var draw = SVG(whereToPut).size(350,350);
+			drawBox(draw);
+			return draw;
+		}
+		var draw1 = function(loc) {
+			var draw = setUp(loc);
+			var line = drawLine(draw);
+			return line;
+		}
+		var draw2 = function(loc) {
+			var line = draw1(loc);
+			line.move(30,30);
+		}
+		var draw3 = function(loc) {
+			draw1(loc).transform({
+				rotation:-45,
+				cx:60,
+				cy:60
+			});
+		}
+		var draw4 = function(loc) {
+			draw1(loc).transform({
+				skewX:50
+			});
+		}
+		var draw5 = function(loc) {
+			draw1(loc).transform({
+				scaleX: 4
+			});
+		}
+		draw1('c1');
+		draw2('c2');
+		draw3('c3');
+		draw4('c4');
+		draw5('c5');
+	</script>
+	</body>
+</html>

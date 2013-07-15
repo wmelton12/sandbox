@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<script src="http://joyrexus.spc.uchicago.edu/resources/coffee-script.js"></script>
+		<script src="svgDemo/svg.js"></script>
+		<script src="vector.coffee" type="text/coffeescript"></script>
+		<script scr="d3.v3.min.js"></script>
+		<script src="movers.coffee" type="text/coffeescript"></script>
+		<script src="controller.coffee" type="text/coffee-script"></script>
+		<title>phys</title>
+	</head>
+	<body>
+		<div id = "canvas"></div>
+	</body>
+</html>
